@@ -1,0 +1,240 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f3f6fb;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.provider-login-page {
+  width: 100%;
+  min-height: 54vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  background: linear-gradient(
+    135deg,
+    #e0e7ff,
+    #f8fafc
+  );
+}
+
+/* =========================
+   CARD
+========================= */
+
+.provider-login-card {
+  width: 100%;
+  max-width: 420px;
+
+  background: #ffffff;
+
+  padding: 35px 30px;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.08),
+    0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.provider-login-card h2 {
+  text-align: center;
+
+  font-size: 30px;
+  font-weight: 700;
+
+  color: #111827;
+
+  margin-bottom: 28px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.provider-login-card form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+/* =========================
+   INPUT
+========================= */
+
+.provider-login-card input {
+  width: 100%;
+
+  padding: 14px 16px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 12px;
+
+  font-size: 15px;
+
+  outline: none;
+
+  background: #f9fafb;
+
+  transition: 0.3s ease;
+}
+
+.provider-login-card input:focus {
+  border-color: #2563eb;
+
+  background: #ffffff;
+
+  box-shadow: 0 0 0 4px
+    rgba(37, 99, 235, 0.12);
+}
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.provider-login-card form button {
+  width: 100%;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #2563eb;
+
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.provider-login-card form button:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-1px);
+}
+
+/* =========================
+   DIVIDER
+========================= */
+
+.provider-login-card hr {
+  border: none;
+
+  border-top: 1px solid #e5e7eb;
+
+  margin: 24px 0;
+}
+
+/* =========================
+   GOOGLE BUTTON
+========================= */
+
+.provider-login-card > button {
+  width: 100%;
+
+  padding: 13px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  color: #111827;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.provider-login-card > button:hover {
+  background: #f3f4f6;
+
+  border-color: #9ca3af;
+
+  transform: translateY(-1px);
+}
+
+/* =========================
+   SIGNUP TEXT
+========================= */
+
+.provider-login-card p {
+  text-align: center;
+
+  margin-top: 20px;
+
+  font-size: 14px;
+
+  color: #4b5563;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.provider-login-card p:hover {
+  color: #2563eb;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 500px) {
+
+  .provider-login-card {
+    padding: 28px 20px;
+  }
+
+  .provider-login-card h2 {
+    font-size: 24px;
+  }
+
+  .provider-login-card input {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .provider-login-card form button,
+  .provider-login-card > button {
+    padding: 12px;
+    font-size: 14px;
+  }
+}

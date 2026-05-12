@@ -1,0 +1,227 @@
+
+.ps-page {
+  min-height: 57vh;
+  background: linear-gradient(135deg, #f7f7ff, #eef1ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", sans-serif;
+  padding: 20px;
+
+  background-image: url("../assets/room.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+}
+
+
+.ps-container {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+
+.ps-left {
+  width: 50%;
+  padding: 40px;
+  background: #ffffff;
+}
+
+.ps-left h2 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.ps-left h3 {
+  margin: 15px 0 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+/* INPUTS */
+.ps-left input,
+.ps-left textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border: 1px solid #e4e4e4;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  background: #fafafa;
+  transition: 0.3s;
+}
+
+.ps-left input:focus,
+.ps-left textarea:focus {
+  border-color: #6c4cff;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(108, 76, 255, 0.1);
+}
+
+/* BUTTON */
+.ps-left button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #6c4cff, #5a2bbf);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.ps-left button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(108, 76, 255, 0.3);
+}
+
+/* OTP */
+.otp-box {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.otp-box input {
+  width: 40px;
+  height: 45px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+
+.ps-right {
+  width: 50%;
+  background: linear-gradient(135deg, #6c4cff, #5a2bbf);
+  color: white;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.ps-right h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.ps-right h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.ps-right p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* INPUTS RIGHT */
+.ps-right input,
+.ps-right textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  backdrop-filter: blur(8px);
+}
+
+.ps-right input::placeholder,
+.ps-right textarea::placeholder {
+  color: rgba(255,255,255,0.8);
+}
+
+.ps-right input:focus,
+.ps-right textarea:focus {
+  background: rgba(255,255,255,0.25);
+}
+
+/* FILE INPUT */
+.ps-right input[type="file"] {
+  border: 1px dashed rgba(255,255,255,0.5);
+}
+
+/* BUTTON RIGHT */
+.ps-right button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: white;
+  color: #5a2bbf;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ps-right button:hover {
+  transform: translateY(-2px);
+}
+
+
+.signup-login-link {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+
+.signup-login-link span {
+  color: #fff;
+  background: linear-gradient(135deg, #ff4d4d, #ff1a75);
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-block;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(255, 26, 117, 0.3);
+}
+
+/* hover effect */
+.signup-login-link span:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(255, 26, 117, 0.5);
+}
+
+@media (max-width: 900px) {
+  .ps-container {
+    flex-direction: column;
+  }
+
+  .ps-left,
+  .ps-right {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .ps-left {
+    padding: 20px;
+  }
+
+  .otp-box input {
+    width: 35px;
+    height: 40px;
+  }
+}
