@@ -1,19 +1,14 @@
 const API = "https://room-c762.onrender.com";
-
-// ================= LISTINGS =================
-
 // GET ALL LISTINGS
 export const getAllListings = async () => {
   try {
     const res = await fetch(`${API}/api/listings/all`);
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch all listings");
-    }
+    if (!res.ok) throw new Error("Failed to fetch listings");
 
     return await res.json();
-  } catch (error) {
-    console.error("getAllListings error:", error);
+  } catch (err) {
+    console.error(err);
     return [];
   }
 };
@@ -25,13 +20,11 @@ export const getNearListings = async (lat, lng) => {
       `${API}/api/listings/near?lat=${lat}&lng=${lng}`
     );
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch near listings");
-    }
+    if (!res.ok) throw new Error("Failed to fetch nearby listings");
 
     return await res.json();
-  } catch (error) {
-    console.error("getNearListings error:", error);
+  } catch (err) {
+    console.error(err);
     return [];
   }
 };

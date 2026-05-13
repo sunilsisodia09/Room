@@ -1,5 +1,6 @@
 // Rooms.jsx
-import { getRooms } from "../api/api";
+import { getAllListings } from "../api/api";
+
 
 import React, {
   useEffect,

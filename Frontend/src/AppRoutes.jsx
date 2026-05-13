@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import RoomDetails from "./pages/RoomDetails";
 import Home from '../src/components/Home'
-import Rooms from '../src/components/Rooms'
+import Rooms from '../src/components/Rooms.jsx'
 import SearchBar from "./pages/SearchBar";
 import Login from '../src/components/Login'
 import ProviderSignup from "./components/ProviderSignup";
