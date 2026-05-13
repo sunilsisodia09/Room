@@ -17,6 +17,14 @@ if (!fs.existsSync("./uploads")) {
   fs.mkdirSync("./uploads");
 }
 
+
+app.use(
+  cors({
+    origin: "https://roomhai-kappa.vercel.app",
+    credentials: true,
+  })
+);
+
 app.use("/uploads", express.static("uploads"));
 
 // ================= ROUTES =================
