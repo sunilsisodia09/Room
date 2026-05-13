@@ -91,17 +91,7 @@ export default function AddListing() {
 
   const handleSubmit = async () => {
 
-    if (
-      !form.title ||
-      !form.price ||
-      !form.city ||
-      !form.address ||
-      !form.phone ||
-      !form.type
-    ) {
-      alert("Please fill all required fields");
-      return;
-    }
+
 
     const data = new FormData();
 
