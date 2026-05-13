@@ -20,7 +20,10 @@ if (!fs.existsSync("./uploads")) {
 
 app.use(
   cors({
-    origin: "https://roomhai-kappa.vercel.app",
+    origin: [
+      "https://roomhai-kappa.vercel.app",
+      "https://roomhai.netlify.app"
+    ],
     credentials: true,
   })
 );
