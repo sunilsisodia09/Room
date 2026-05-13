@@ -29,17 +29,6 @@ http://localhost:5173
 
 Inside frontend API files use:
 
-### Local Development
-
-```js
-const BASE_URL = "http://localhost:5000";
-```
-
-### Production
-
-```js
-const BASE_URL = "https://your-backend-url.onrender.com";
-```
 
 ---
 
