@@ -1,5 +1,5 @@
 // Rooms.jsx
-import { getRooms } from "./api";
+import { getRooms } from "../api/api";
 
 import React, {
   useEffect,
