@@ -131,7 +131,7 @@ const Home = () => {
         className="primary-btn"
         onClick={() => navigate("/dashboard")}
       >
-        I'm a Bachelor
+        RoomHai
       </button>
 
       <button

@@ -54,7 +54,7 @@ const Footer = () => {
 
           <a href="/">Home</a>
 
-          <a href="/providers">
+          <a href="/ProviderSignup">
             Providers
           </a>
 
@@ -62,7 +62,7 @@ const Footer = () => {
             Contact Us
           </a>
 
-          <a href="/dashboard">
+          <a href="/Dashboard">
             Find Rooms
           </a>
 
@@ -102,7 +102,7 @@ const Footer = () => {
             <FaMapMarkerAlt
               style={{ marginRight: "8px" }}
             />
-            Delhi, India
+            Dehradun, India
           </p>
 
           <p>
@@ -112,12 +112,12 @@ const Footer = () => {
             +91 6395235895
           </p>
 
-          <p>
+          {/* <p>
             <FaEnvelope
               style={{ marginRight: "8px" }}
             />
             support@bacheloroom.com
-          </p>
+          </p> */}
 
         </div>
 
@@ -132,7 +132,7 @@ const Footer = () => {
       <div className="br-footer-bottom">
 
         <p>
-          © 2026 BacheloRoom.
+          © 2026 RoomHai.
           All Rights Reserved.
         </p>
 

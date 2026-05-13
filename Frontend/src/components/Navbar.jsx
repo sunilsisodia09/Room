@@ -30,9 +30,19 @@ const Navbar = () => {
 
        
 
-        <li>
+       <li>
+  <Link
+    to="/Dashboard"
+    onClick={() => setMenuOpen(false)}
+    className="nav-btn"
+  >
+    FindPlace
+  </Link>
+</li>
+
+        {/* <li>
           <Link to="/Contact" onClick={() => setMenuOpen(false)}>Contact</Link>
-        </li>
+        </li>  */}
 
         {/* MOBILE BUTTONS */}
         <div className="nav-buttons">

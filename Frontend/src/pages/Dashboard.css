@@ -1,3 +1,4 @@
+/* ================= PAGE ================= */
 
 .db-page {
   width: 100%;
@@ -7,7 +8,7 @@
   box-sizing: border-box;
 }
 
-
+/* ================= HEADER ================= */
 
 .db-header {
   display: flex;
@@ -28,7 +29,7 @@
   color: #6b7280;
 }
 
-
+/* ================= FILTERS ================= */
 
 .db-filters {
   display: flex;
@@ -59,7 +60,7 @@
   color: white;
 }
 
-
+/* ================= GRID ================= */
 
 .db-room-grid {
   display: grid;
@@ -67,7 +68,7 @@
   gap: 22px;
 }
 
-
+/* ================= CARD (FIXED SIZE) ================= */
 
 .db-room-card {
   background: white;
@@ -75,20 +76,23 @@
   overflow: hidden;
   box-shadow: 0 4px 18px rgba(0,0,0,0.07);
   transition: 0.3s;
+
   display: flex;
   flex-direction: column;
+
+  height: 430px;   /* ✅ FIXED HEIGHT FOR ALL CARDS */
 }
 
 .db-room-card:hover {
   transform: translateY(-5px);
 }
 
-
+/* ================= IMAGE ================= */
 
 .db-room-image-wrapper {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: 200px;   /* ✅ FIXED IMAGE HEIGHT */
   overflow: hidden;
 }
 
@@ -98,7 +102,7 @@
   object-fit: cover;
 }
 
-
+/* ================= BADGES ================= */
 
 .db-room-type-badge {
   position: absolute;
@@ -126,14 +130,17 @@
   z-index: 10;
 }
 
-
+/* ================= CONTENT ================= */
 
 .db-room-content {
   padding: 18px;
   display: flex;
   flex-direction: column;
   flex: 1;
+  justify-content: space-between; /* ✅ equal spacing */
 }
+
+/* ================= TITLE ================= */
 
 .db-room-title {
   font-size: 18px;
@@ -141,7 +148,14 @@
   color: #111827;
   margin-bottom: 10px;
   line-height: 1.4;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
+
+/* ================= LOCATION ================= */
 
 .db-room-location {
   display: flex;
@@ -152,11 +166,12 @@
   margin-bottom: 14px;
 }
 
+/* ================= PRICE ================= */
+
 .db-room-price {
   font-size: 24px;
   font-weight: 700;
   color: #111827;
-  margin-bottom: 20px;
 }
 
 .db-room-price span {
@@ -166,7 +181,7 @@
   margin-left: 4px;
 }
 
-
+/* ================= BUTTON ================= */
 
 .db-card-view-btn {
   width: 100%;
@@ -179,14 +194,14 @@
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
-  margin-top: auto;
+  margin-top: 12px;
 }
 
 .db-card-view-btn:hover {
   background: #2563eb;
 }
 
-
+/* ================= NO DATA ================= */
 
 .db-no-room-text {
   font-size: 20px;
@@ -197,83 +212,11 @@
   padding: 50px 0;
 }
 
-
-
-@media (max-width: 1400px) {
-
-  .db-room-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-}
-
-
-
-@media (max-width: 1100px) {
-
-  .db-room-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-}
-
-
-
-@media (max-width: 768px) {
-
-  .db-page {
-    padding: 20px 15px;
-  }
-
-  .db-title {
-    font-size: 28px;
-  }
-
-  .db-room-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-  }
-
-  .db-room-image-wrapper {
-    height: 190px;
-  }
-
-}
-
-
-
-@media (max-width: 550px) {
-
-  .db-room-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .db-room-image-wrapper {
-    height: 240px;
-  }
-
-  .db-title {
-    font-size: 24px;
-  }
-
-  .db-subtitle {
-    font-size: 14px;
-  }
-
-  .db-filter-btn {
-    padding: 9px 18px;
-    font-size: 13px;
-  }
-
-}
+/* ================= BUTTON (suni) ================= */
 
 .suni {
   padding: 12px 22px;
-  background: linear-gradient(
-    135deg,
-    #2563eb,
-    #1d4ed8
-  );
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: white;
   border: none;
   border-radius: 12px;
@@ -288,11 +231,7 @@
 
 .suni:hover {
   transform: translateY(-2px);
-  background: linear-gradient(
-    135deg,
-    #1d4ed8,
-    #1e40af
-  );
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
   box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
 }
 
@@ -300,21 +239,62 @@
   transform: scale(0.98);
 }
 
-@media (max-width: 768px) {
+/* ================= RESPONSIVE ================= */
 
-  .suni {
-    padding: 11px 18px;
+@media (max-width: 1400px) {
+  .db-room-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1100px) {
+  .db-room-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .db-page {
+    padding: 20px 15px;
+  }
+
+  .db-title {
+    font-size: 28px;
+  }
+
+  .db-room-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .db-room-image-wrapper {
+    height: 180px;
+  }
+
+  .db-room-card {
+    height: 410px;
+  }
+}
+
+@media (max-width: 550px) {
+  .db-room-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .db-room-image-wrapper {
+    height: 220px;
+  }
+
+  .db-title {
+    font-size: 24px;
+  }
+
+  .db-subtitle {
     font-size: 14px;
   }
 
-}
-
-@media (max-width: 480px) {
-
-  .suni {
-    padding: 10px 16px;
+  .db-filter-btn {
+    padding: 9px 18px;
     font-size: 13px;
-    border-radius: 10px;
   }
-
 }

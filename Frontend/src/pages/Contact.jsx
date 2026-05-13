@@ -1,101 +1,85 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Contact.css";
+import {
+  FaHome,
+  FaPhoneAlt,
+  FaEnvelope,
+} from "react-icons/fa";
 
-const Contact = () => {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!form.name || !form.email || !form.message) {
-      alert("Please fill all fields");
-      return;
-    }
-
-    alert("Message sent successfully 🚀");
-
-    setForm({
-      name: "",
-      email: "",
-      message: "",
-    });
-  };
-
+export default function Contact() {
   return (
     <div className="contact-page">
 
-      {/* LEFT INFO */}
-      <div className="contact-info">
-        <h2>Contact BachelorRoom</h2>
-
-        <p>
-          We help students and bachelors find affordable rooms, PGs, and shared spaces easily.
-        </p>
-
-        <div className="info-box">
-          <h4>📍 Address</h4>
-          <p>Dehradun, Uttarakhand, India</p>
-        </div>
-
-        <div className="info-box">
-          <h4>📞 Phone</h4>
-          <p>+91 98765 43210</p>
-        </div>
-
-        <div className="info-box">
-          <h4>📧 Email</h4>
-          <p>support@bachelorroom.com</p>
-        </div>
-
-        <div className="info-box">
-          <h4>⏰ Working Hours</h4>
-          <p>Mon - Sat (9AM - 7PM)</p>
-        </div>
+      {/* TOP TITLE */}
+      <div className="contact-header">
+        <h1>Contact Us</h1>
       </div>
 
-      {/* RIGHT FORM */}
-      <div className="contact-form">
-        <h2>Get in Touch</h2>
+      {/* MAIN SECTION */}
+      <div className="contact-container">
 
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={form.name}
-            onChange={handleChange}
-          />
+        {/* LEFT FORM */}
+        <div className="contact-form-box">
+          <h2>Send Message</h2>
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={form.email}
-            onChange={handleChange}
-          />
+          <form>
+            <input type="text" placeholder="Full Name" />
 
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            rows="6"
-            value={form.message}
-            onChange={handleChange}
-          ></textarea>
+            <input type="email" placeholder="Email" />
 
-          <button type="submit">Send Message</button>
-        </form>
+            <textarea
+              placeholder="Type your Message..."
+              rows="4"
+            ></textarea>
+
+            <button type="submit">Send</button>
+          </form>
+        </div>
+
+        {/* RIGHT INFO */}
+        <div className="contact-info-box">
+
+          <div className="info-item">
+            <div className="icon">
+              <FaHome />
+            </div>
+
+            <div className="info-text">
+              <h3>Address</h3>
+              <p>
+                4671 Sugar Camp Road,
+                <br />
+                Owatonna, Minnesota,
+                <br />
+                55060
+              </p>
+            </div>
+          </div>
+
+          <div className="info-item">
+            <div className="icon">
+              <FaPhoneAlt />
+            </div>
+
+            <div className="info-text">
+              <h3>Phone</h3>
+              <p>571-457-2321</p>
+            </div>
+          </div>
+
+          <div className="info-item">
+            <div className="icon">
+              <FaEnvelope />
+            </div>
+
+            <div className="info-text">
+              <h3>Email</h3>
+              <p>ntamerwe@mfano.ga</p>
+            </div>
+          </div>
+
+        </div>
       </div>
-
     </div>
   );
-};
-
-export default Contact;
+}
