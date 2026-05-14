@@ -1,6 +1,9 @@
 // Dashboard.jsx
 
-import React, { useEffect, useState } from "react";
+import React, {
+  useEffect,
+  useState,
+} from "react";
 
 import {
   useLocation,
@@ -19,7 +22,8 @@ const Dashboard = () => {
 
   const location = useLocation();
 
-  const [data, setData] = useState([]);
+  const [data, setData] =
+    useState([]);
 
   const [filter, setFilter] =
     useState("All");
@@ -43,7 +47,9 @@ const Dashboard = () => {
       params.get("type");
 
     if (type) {
+
       setFilterType(type);
+
     }
 
     if (navigator.geolocation) {
@@ -60,17 +66,24 @@ const Dashboard = () => {
 
           try {
 
-            const res = await fetch(
-              `http://localhost:5000/api/listings/near?lat=${lat}&lng=${lng}`
-            );
+            const res =
+              await fetch(
+
+                `http://localhost:5000/api/listings/near?lat=${lat}&lng=${lng}`
+
+              );
 
             const result =
               await res.json();
 
             setData(
+
               Array.isArray(result)
+
                 ? result
+
                 : result.listings || []
+
             );
 
           } catch (err) {
@@ -101,17 +114,24 @@ const Dashboard = () => {
 
     try {
 
-      const res = await fetch(
-        "http://localhost:5000/api/listings/all"
-      );
+      const res =
+        await fetch(
+
+          "http://localhost:5000/api/listings/all"
+
+        );
 
       const result =
         await res.json();
 
       setData(
+
         Array.isArray(result)
+
           ? result
+
           : result.listings || []
+
       );
 
     } catch (err) {
@@ -143,6 +163,7 @@ const Dashboard = () => {
             if (count > 1) {
 
               updated[item._id] =
+
                 (
                   (prev[item._id] || 0) + 1
                 ) % count;
@@ -162,26 +183,37 @@ const Dashboard = () => {
 
   }, [data]);
 
-  // ================= FILTER =================
+  // ================= FILTER ONLY AVAILABLE =================
 
   const filteredData =
     data.filter((item) => {
 
+      // HIDE NOT AVAILABLE LISTINGS
+
+      if (!item.available)
+        return false;
+
       const uiFilter =
+
         filter === "All" ||
+
         item.type
           ?.toLowerCase() ===
           filter.toLowerCase();
 
       const urlFilter =
+
         !filterType ||
+
         item.type
           ?.toLowerCase()
           .includes(
             filterType.toLowerCase()
           );
 
-      return uiFilter && urlFilter;
+      return (
+        uiFilter && urlFilter
+      );
 
     });
 
@@ -196,12 +228,16 @@ const Dashboard = () => {
         <div>
 
           <h2 className="db-title">
+
             Featured Rooms
+
           </h2>
 
           <p className="db-subtitle">
+
             Find best PG, Hostel &
             Rooms near you
+
           </p>
 
         </div>
@@ -213,23 +249,37 @@ const Dashboard = () => {
       <div className="db-filters">
 
         {[
+
           "All",
+
           "PG",
+
           "Hostel",
+
           "Room",
+
           "Flat",
+
         ].map((f) => (
 
           <button
+
             key={f}
+
             className={
+
               filter === f
+
                 ? "db-filter-btn db-active-filter"
+
                 : "db-filter-btn"
+
             }
+
             onClick={() =>
               setFilter(f)
             }
+
           >
 
             {f}
@@ -247,7 +297,9 @@ const Dashboard = () => {
         {filteredData.length === 0 ? (
 
           <p className="db-no-room-text">
-            No Rooms Found
+
+            No Available Rooms Found
+
           </p>
 
         ) : (
@@ -255,18 +307,23 @@ const Dashboard = () => {
           filteredData.map((item) => {
 
             const address =
+
               item.address ||
+
               item.city ||
+
               item.location ||
+
               "";
 
             const images =
-              Array.isArray(
-                item.images
-              )
+
+              Array.isArray(item.images)
+
                 ? item.images.filter(
                     Boolean
                   )
+
                 : [];
 
             const index =
@@ -275,37 +332,67 @@ const Dashboard = () => {
             return (
 
               <div
+
                 key={item._id}
+
                 className="db-room-card"
+
               >
 
-                {/* IMAGE */}
+                {/* ================= IMAGE ================= */}
 
                 <div className="db-room-image-wrapper">
 
+                  {/* ROOM TYPE */}
+
                   <span className="db-room-type-badge">
+
                     {item.type}
+
                   </span>
+
+                  {/* GENDER */}
 
                   <span className="db-room-gender-badge">
+
                     {item.gender ||
                       "Unisex"}
+
                   </span>
 
+                  {/* AVAILABLE BADGE */}
+
+                  <span className="db-room-available-badge">
+
+                    Available
+
+                  </span>
+
+                  {/* IMAGE */}
+
                   <img
+
                     className="db-room-image"
+
                     src={
+
                       images.length
+
                         ? `http://localhost:5000/${images[index]}`
+
                         : "https://via.placeholder.com/400x250?text=No+Image"
+
                     }
+
                     alt="room"
+
                     loading="lazy"
+
                   />
 
                 </div>
 
-                {/* CONTENT */}
+                {/* ================= CONTENT ================= */}
 
                 <div className="db-room-content">
 
@@ -334,11 +421,25 @@ const Dashboard = () => {
 
                   </h4>
 
-                  {/* BUTTON */}
+                  {/* ================= BUTTON ================= */}
 
-                 <button className="suni" onClick={() => navigate(`/RoomDetails/${item._id}`)}>
-                  View All
-                 </button>
+                  <button
+
+                    className="suni"
+
+                    onClick={() =>
+
+                      navigate(
+                        `/RoomDetails/${item._id}`
+                      )
+
+                    }
+
+                  >
+
+                    View Details
+
+                  </button>
 
                 </div>
 
@@ -346,7 +447,7 @@ const Dashboard = () => {
 
             );
 
-          }) 
+          })
 
         )}
 

@@ -229,6 +229,53 @@ router.get("/near", async (req, res) => {
   }
 
 });
+// ================= UPDATE AVAILABILITY =================
+
+router.put(
+
+  "/availability/:id",
+
+  async (req, res) => {
+
+    try {
+
+      const { available } =
+        req.body;
+
+      const updatedListing =
+        await Listing.findByIdAndUpdate(
+
+          req.params.id,
+
+          { available },
+
+          { new: true }
+
+        );
+
+      res.json({
+
+        success: true,
+
+        listing: updatedListing,
+
+      });
+
+    } catch (err) {
+
+      res.status(500).json({
+
+        success: false,
+
+        message: err.message,
+
+      });
+
+    }
+
+  }
+
+);
 
 // ================= GET BY PROVIDER =================
 router.get("/:id", async (req, res) => {

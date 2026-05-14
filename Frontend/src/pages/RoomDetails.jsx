@@ -261,7 +261,7 @@ export default function RoomDetails() {
             </span>
 
           </div>
-
+          
           {/* GENDER */}
 
           <div className="detail-item">
@@ -273,7 +273,32 @@ export default function RoomDetails() {
               {room.gender}
 
             </span>
+            
+<div className="availability-section">
 
+  <span
+
+    className={
+
+      room.available
+
+        ? "available"
+
+        : "not-available"
+
+    }
+
+  >
+
+    {room.available
+
+      ? "Available"
+
+      : "Not Available"}
+
+  </span>
+
+</div>
           </div>
 
           {/* FACILITIES */}

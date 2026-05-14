@@ -42,6 +42,76 @@ export default function ProviderDashboard() {
 
   }, [navigate]);
 
+  // ================= TOGGLE AVAILABILITY =================
+
+  const toggleAvailability = async (
+    id,
+    currentStatus
+  ) => {
+
+    try {
+
+      const res = await fetch(
+
+        `http://localhost:5000/api/listings/availability/${id}`,
+
+        {
+
+          method: "PUT",
+
+          headers: {
+
+            "Content-Type":
+              "application/json",
+
+          },
+
+          body: JSON.stringify({
+
+            available:
+              !currentStatus,
+
+          }),
+
+        }
+
+      );
+
+      const data = await res.json();
+
+      if (data.success) {
+
+        setListings((prev) =>
+
+          prev.map((item) =>
+
+            item._id === id
+
+              ? {
+
+                  ...item,
+
+                  available:
+                    !currentStatus,
+
+                }
+
+              : item
+
+          )
+
+        );
+
+      }
+
+    } catch (err) {
+
+      console.log(err);
+
+    }
+
+  };
+
   // ================= FETCH LISTINGS =================
 
   const fetchListings = async (id) => {
@@ -81,41 +151,44 @@ export default function ProviderDashboard() {
   }, [provider]);
 
   // ================= IMAGE FIX FUNCTION =================
-const getImageUrl = (img) => {
 
-  // NO IMAGE
-  if (!img) {
+  const getImageUrl = (img) => {
 
-    return "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+    // NO IMAGE
+    if (!img) {
 
-  }
+      return "https://cdn-icons-png.flaticon.com/512/149/149071.png";
 
-  // GOOGLE IMAGE URL
-  if (
-    img.startsWith("http://") ||
-    img.startsWith("https://")
-  ) {
+    }
 
-    return img;
+    // GOOGLE IMAGE URL
+    if (
+      img.startsWith("http://") ||
+      img.startsWith("https://")
+    ) {
 
-  }
+      return img;
 
-  // LOCAL IMAGE
-  let imagePath =
-    img.replace(/\\/g, "/");
+    }
 
-  if (
-    !imagePath.startsWith("uploads/")
-  ) {
+    // LOCAL IMAGE
+    let imagePath =
+      img.replace(/\\/g, "/");
 
-    imagePath =
-      `uploads/${imagePath}`;
+    if (
+      !imagePath.startsWith("uploads/")
+    ) {
 
-  }
+      imagePath =
+        `uploads/${imagePath}`;
 
-  return `http://localhost:5000/${imagePath}`;
-};
-  if (!provider) return <h2>Loading...</h2>;
+    }
+
+    return `http://localhost:5000/${imagePath}`;
+  };
+
+  if (!provider)
+    return <h2>Loading...</h2>;
 
   return (
 
@@ -278,6 +351,54 @@ const getImageUrl = (img) => {
                           ₹ {item.price}
                         </h4>
 
+                        {/* ================= AVAILABILITY ================= */}
+
+                        <div className="availability-section">
+
+                          <span
+
+                            className={
+
+                              item.available
+                                ? "available"
+                                : "not-available"
+
+                            }
+
+                          >
+
+                            {item.available
+                              ? "Available"
+                              : "Not Available"}
+
+                          </span>
+
+                          <button
+
+                            className="toggle-btn"
+
+                            onClick={() =>
+
+                              toggleAvailability(
+
+                                item._id,
+
+                                item.available
+
+                              )
+
+                            }
+
+                          >
+
+                            {item.available
+                              ? "Mark Unavailable"
+                              : "Mark Available"}
+
+                          </button>
+
+                        </div>
+
                         {/* ACTIONS */}
 
                         <div className="action-icons">
@@ -319,7 +440,7 @@ const getImageUrl = (img) => {
                           <a
                             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                               item.address ||
-                                item.city
+                              item.city
                             )}`}
 
                             target="_blank"

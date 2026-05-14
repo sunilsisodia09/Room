@@ -296,3 +296,44 @@
   }
 
 }
+
+/* ================= AVAILABILITY ================= */
+
+.availability-section {
+
+  margin: 18px 0;
+}
+
+.available {
+
+  background: #dcfce7;
+
+  color: #15803d;
+
+  padding: 8px 18px;
+
+  border-radius: 30px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  display: inline-block;
+}
+
+.not-available {
+
+  background: #fee2e2;
+
+  color: #dc2626;
+
+  padding: 8px 18px;
+
+  border-radius: 30px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  display: inline-block;
+}

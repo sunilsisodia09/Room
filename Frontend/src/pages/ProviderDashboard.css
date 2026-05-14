@@ -721,3 +721,72 @@ body {
   }
 
 }
+
+/* ================= AVAILABILITY ================= */
+
+.availability-section {
+
+  margin-top: 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.available {
+
+  background: #d4f8d4;
+
+  color: green;
+
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.not-available {
+
+  background: #ffd6d6;
+
+  color: red;
+
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.toggle-btn {
+
+  border: none;
+
+  background: #111827;
+
+  color: white;
+
+  padding: 8px 14px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+
+  transition: 0.3s;
+}
+
+.toggle-btn:hover {
+
+  opacity: 0.9;
+}

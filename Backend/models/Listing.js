@@ -1,24 +1,58 @@
 const mongoose = require("mongoose");
 
-const listingSchema = new mongoose.Schema({
-  title: String,
-  price: String,
-  address: String,
-  city: String,
-  type: String,
-  gender: String,
-  whatsapp: String,
-  phone: String,
-  location: String,
-  images: [String],
-  providerId: String,
+const listingSchema = new mongoose.Schema(
 
-  // 🔥 ADD THIS
-  facilities: {
-    type: [String],
-    default: []
-  }
+  {
+    title: String,
 
-}, { timestamps: true });
+    price: String,
 
-module.exports = mongoose.model("Listing", listingSchema);
+    address: String,
+
+    city: String,
+
+    type: String,
+
+    gender: String,
+
+    whatsapp: String,
+
+    phone: String,
+
+    location: String,
+
+    images: [String],
+
+    providerId: String,
+
+    // ================= FACILITIES =================
+
+    facilities: {
+
+      type: [String],
+
+      default: [],
+
+    },
+
+    // ================= AVAILABILITY =================
+
+    available: {
+
+      type: Boolean,
+
+      default: true,
+
+    },
+
+  },
+
+  { timestamps: true }
+
+);
+
+module.exports =
+  mongoose.model(
+    "Listing",
+    listingSchema
+  );
