@@ -49,6 +49,15 @@ const HomeSection = () => {
 
     navigate(`/rooms?type=${type}`);
 
+    setTimeout(() => {
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+
+    }, 100);
+
   };
 
   return (
@@ -56,6 +65,7 @@ const HomeSection = () => {
     <section className="home-section">
 
       {/* TOP */}
+
       <div className="section-header">
 
         <div>
@@ -64,16 +74,17 @@ const HomeSection = () => {
             Explore Categories
           </span>
 
-        <h2 className="section-title">
-  Discover the Best PGs, Rooms & Hostels.
-</h2>
-          
+          <h2 className="section-title">
+            Discover the Best PGs,
+            Rooms & Hostels.
+          </h2>
 
         </div>
 
       </div>
 
       {/* CATEGORY GRID */}
+
       <div className="categories-grid">
 
         {categories.map((item, index) => (
@@ -87,11 +98,13 @@ const HomeSection = () => {
           >
 
             {/* ICON */}
+
             <div className="category-icon">
               {item.icon}
             </div>
 
             {/* CONTENT */}
+
             <div className="category-content">
 
               <h3>{item.title}</h3>
@@ -101,6 +114,7 @@ const HomeSection = () => {
             </div>
 
             {/* ARROW */}
+
             <div className="category-arrow">
               <FaArrowRight />
             </div>

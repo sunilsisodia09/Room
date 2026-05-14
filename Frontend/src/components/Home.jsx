@@ -128,11 +128,20 @@ const Home = () => {
 
     <div className="hero-buttons">
       <button
-        className="primary-btn"
-        onClick={() => navigate("/dashboard")}
-      >
-        RoomHai
-      </button>
+  className="primary-btn"
+  onClick={() => {
+
+    navigate("/dashboard");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+  }}
+>
+  RoomHai
+</button>
 
       <button
         className="outline-btn"
