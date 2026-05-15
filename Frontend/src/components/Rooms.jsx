@@ -64,7 +64,7 @@ const Rooms = () => {
       try {
 
         const res = await fetch(
-          "http://localhost:5000/api/listings/all"
+          "/api/listings/all"
         );
 
         const data =
@@ -249,7 +249,7 @@ useEffect(() => {
 
             const imageUrl =
               rawImage
-                ? `http://localhost:5000/${rawImage}`
+                ? `/${rawImage}`
                 : "https://via.placeholder.com/400x250";
 
             return (

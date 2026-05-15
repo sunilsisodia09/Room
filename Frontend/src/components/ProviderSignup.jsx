@@ -35,7 +35,7 @@ export default function ProviderSignup() {
   const checkProvider = async () => {
     try {
       const res = await fetch(
-        "http://localhost:5000/api/providers/check-provider",
+        "/api/providers/check-provider",
         {
           method: "POST",
           headers: {
@@ -93,7 +93,7 @@ export default function ProviderSignup() {
       }
 
       const res = await fetch(
-        "http://localhost:5000/api/providers/register",
+        "/api/providers/register",
         {
           method: "POST",
           body: formData,

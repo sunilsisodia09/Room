@@ -69,7 +69,7 @@ const Dashboard = () => {
             const res =
               await fetch(
 
-                `http://localhost:5000/api/listings/near?lat=${lat}&lng=${lng}`
+                `/api/listings/near?lat=${lat}&lng=${lng}`
 
               );
 
@@ -117,7 +117,7 @@ const Dashboard = () => {
       const res =
         await fetch(
 
-          "http://localhost:5000/api/listings/all"
+          "/api/listings/all"
 
         );
 
@@ -378,7 +378,7 @@ const Dashboard = () => {
 
                       images.length
 
-                        ? `http://localhost:5000/${images[index]}`
+                        ? `/${images[index]}`
 
                         : "https://via.placeholder.com/400x250?text=No+Image"
 

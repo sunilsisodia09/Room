@@ -28,7 +28,7 @@ export default function Login() {
     }
 
     const res = await fetch(
-      "http://localhost:5000/api/users/google-login",
+      "/api/users/google-login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

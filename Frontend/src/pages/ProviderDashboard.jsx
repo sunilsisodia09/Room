@@ -53,7 +53,7 @@ export default function ProviderDashboard() {
 
       const res = await fetch(
 
-        `http://localhost:5000/api/listings/availability/${id}`,
+        `/api/listings/availability/${id}`,
 
         {
 
@@ -119,7 +119,7 @@ export default function ProviderDashboard() {
     try {
 
       const res = await fetch(
-        `http://localhost:5000/api/listings/provider/${id}`
+        `/api/listings/provider/${id}`
       );
 
       const data = await res.json();
@@ -184,7 +184,7 @@ export default function ProviderDashboard() {
 
     }
 
-    return `http://localhost:5000/${imagePath}`;
+    return `/${imagePath}`;
   };
 
   if (!provider)

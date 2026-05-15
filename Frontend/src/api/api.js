@@ -1,5 +1,4 @@
-const API = "https://room-c762.onrender.com";
-// GET ALL LISTINGS
+const API = "";// GET ALL LISTINGS
 export const getAllListings = async () => {
   try {
     const res = await fetch(`${API}/api/listings/all`);

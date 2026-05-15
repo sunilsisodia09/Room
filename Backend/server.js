@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const fs = require("fs");
+const path = require("path");
 
 const app = express();
 
@@ -31,10 +32,17 @@ app.use("/api/users", userRoutes);
 app.use("/api/providers", providerRoutes);
 app.use("/api/listings", listingRoutes);
 
-// ================= TEST ROUTE =================
-app.get("/", (req, res) => {
-  res.send("Backend Running 🚀");
+// =============== FRONTEND ===============
+const frontendDist = path.join(__dirname, "..", "Frontend", "dist");
+if (fs.existsSync(frontendDist)) {
+app.use(express.static(frontendDist));
+app.get(/^(?!\/api\/|\/uploads\/).*/, (req, res) => {
+res.sendFile(path.join(frontendDist, "index.html"));
 });
+} else {
+app.get("/", (req, res) => res.send("Backend Running (no frontend build)"));
+}
+
 
 // ================= MONGODB CONNECTION =================
 mongoose

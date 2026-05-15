@@ -55,7 +55,7 @@ export default function RoomDetails() {
 
         const res =
           await axios.get(
-            `http://localhost:5000/api/listings/${id}`
+            `/api/listings/${id}`
           );
 
         console.log(
@@ -161,7 +161,7 @@ export default function RoomDetails() {
             <img
               src={
                 mainImage
-                  ? `http://localhost:5000/${mainImage}`
+                  ? `/${mainImage}`
                   : "https://via.placeholder.com/700x450"
               }
               alt="room"
@@ -178,7 +178,7 @@ export default function RoomDetails() {
 
               <img
                 key={i}
-                src={`http://localhost:5000/${img}`}
+                src={`/${img}`}
                 alt=""
                 className={
                   mainImage === img

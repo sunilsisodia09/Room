@@ -15,7 +15,7 @@ const List = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/listings/all");
+        const res = await fetch("/api/listings/all");
         const result = await res.json();
 
         const list = Array.isArray(result)
@@ -60,7 +60,7 @@ const List = () => {
               <img
                 src={
                   item.images?.length
-                    ? `http://localhost:5000/${item.images[0]}`
+                    ? `/${item.images[0]}`
                     : "https://via.placeholder.com/300"
                 }
                 alt=""

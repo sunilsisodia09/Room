@@ -37,7 +37,7 @@ export default function ProviderLogin() {
     try {
 
       const res = await fetch(
-        "http://localhost:5000/api/providers/login",
+        "/api/providers/login",
         {
           method: "POST",
 
@@ -121,7 +121,7 @@ export default function ProviderLogin() {
       // ================= API =================
 
       const res = await fetch(
-        "http://localhost:5000/api/providers/google-login",
+        "/api/providers/google-login",
         {
           method: "POST",
 

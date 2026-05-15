@@ -37,7 +37,7 @@ const Home = () => {
 
             try {
               const res = await fetch(
-                `http://localhost:5000/api/listings/near?lat=${lat}&lng=${lng}`
+                `/api/listings/near?lat=${lat}&lng=${lng}`
               );
               const data = await res.json();
 
@@ -52,7 +52,7 @@ const Home = () => {
           },
           async () => {
             const res = await fetch(
-              "http://localhost:5000/api/listings/all"
+              "/api/listings/all"
             );
             const data = await res.json();
 
@@ -187,7 +187,7 @@ const Home = () => {
 
         const image =
           item.images?.length > 0
-            ? `http://localhost:5000/${item.images[index]}`
+            ? `/${item.images[index]}`
             : "https://via.placeholder.com/300";
 
         return (

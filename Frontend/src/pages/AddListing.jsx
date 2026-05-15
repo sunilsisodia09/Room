@@ -103,7 +103,7 @@ export default function AddListing() {
 
     try {
       const res = await fetch(
-        "http://localhost:5000/api/listings/create",
+        "/api/listings/create",
         {
           method: "POST",
           body: data,
