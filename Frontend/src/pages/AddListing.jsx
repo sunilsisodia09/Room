@@ -1,5 +1,3 @@
-// AddListing.jsx
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,13 +11,16 @@ export default function AddListing() {
     localStorage.getItem("provider")
   );
 
+  // ================= FACILITIES =================
+
   const facilitiesList = [
+
     "WiFi",
-        "Housekeeping available",
-            "Food Service Included",
-                "Private Garden",
-                    "On-Call Maintenance Staff",
-                        "Pet Friendly",
+    "Housekeeping available",
+    "Food Service Included",
+    "Private Garden",
+    "On-Call Maintenance Staff",
+    "Pet Friendly",
     "Sofa",
     "AC",
     "Food",
@@ -33,258 +34,736 @@ export default function AddListing() {
     "Semi-Furnished",
     "TV",
     "Attached Bathroom",
+
   ];
 
-  const [selectedFacilities, setSelectedFacilities] = useState([]);
+  // ================= STATES =================
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    title: "",
-    price: "",
-    address: "",
-    city: "",
-    pincode: "",
-    type: "",
-    gender: "",
-    whatsapp: "",
-    phone: "", // ✅ CALL ADD
-    availability: "Available",
-    images: [],
-    providerId: provider?._id,
-  });
+  const [selectedFacilities,
+    setSelectedFacilities] =
+    useState([]);
+
+  const [form, setForm] =
+    useState({
+
+      name: "",
+      email: "",
+      title: "",
+      price: "",
+      address: "",
+      city: "",
+      pincode: "",
+      type: "",
+      gender: "",
+      whatsapp: "",
+      phone: "",
+      availability: "Available",
+      images: [],
+      providerId: provider?._id,
+
+    });
 
   // ================= HANDLE CHANGE =================
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
+
+    const {
+      name,
+      value,
+      files,
+    } = e.target;
+
+    // IMAGES
 
     if (name === "images") {
+
       setForm({
+
         ...form,
+
         images: [...files],
+
       });
-    } else {
-      setForm({
-        ...form,
-        [name]: value,
-      });
+
     }
+
+    // NORMAL INPUTS
+
+    else {
+
+      setForm({
+
+        ...form,
+
+        [name]: value,
+
+      });
+
+    }
+
   };
 
-  // ================= FACILITIES =================
+  // ================= FACILITY TOGGLE =================
 
-  const toggleFacility = (facility) => {
-    if (selectedFacilities.includes(facility)) {
-      setSelectedFacilities(
-        selectedFacilities.filter((f) => f !== facility)
+  const toggleFacility =
+    (facility) => {
+
+      if (
+        selectedFacilities.includes(
+          facility
+        )
+      ) {
+
+        setSelectedFacilities(
+
+          selectedFacilities.filter(
+            (f) =>
+              f !== facility
+          )
+
+        );
+
+      } else {
+
+        setSelectedFacilities([
+
+          ...selectedFacilities,
+
+          facility,
+
+        ]);
+
+      }
+
+    };
+
+  // ================= VALIDATION =================
+
+  const validateForm = () => {
+
+    // REQUIRED
+
+    if (
+
+      !form.title ||
+
+      !form.city ||
+
+      !form.address ||
+
+      !form.price ||
+
+      !form.type
+
+    ) {
+
+      alert(
+        "Please fill all required fields"
       );
-    } else {
-      setSelectedFacilities([...selectedFacilities, facility]);
+
+      return false;
+
     }
+
+    // PRICE
+
+    if (
+      isNaN(form.price)
+    ) {
+
+      alert(
+        "Price must be a number"
+      );
+
+      return false;
+
+    }
+
+    if (
+      Number(form.price) <= 0
+    ) {
+
+      alert(
+        "Price must be greater than 0"
+      );
+
+      return false;
+
+    }
+
+    // PINCODE
+
+    if (
+
+      form.pincode &&
+
+      !/^[0-9]{6}$/.test(
+        form.pincode
+      )
+
+    ) {
+
+      alert(
+        "Pincode must be 6 digits"
+      );
+
+      return false;
+
+    }
+
+    // WHATSAPP
+
+    if (
+
+      form.whatsapp &&
+
+      !/^[0-9]{10}$/.test(
+        form.whatsapp
+      )
+
+    ) {
+
+      alert(
+        "WhatsApp number must be 10 digits"
+      );
+
+      return false;
+
+    }
+
+    // PHONE
+
+    if (
+
+      form.phone &&
+
+      !/^[0-9]{10}$/.test(
+        form.phone
+      )
+
+    ) {
+
+      alert(
+        "Phone number must be 10 digits"
+      );
+
+      return false;
+
+    }
+
+    // IMAGES
+
+    if (
+      form.images.length === 0
+    ) {
+
+      alert(
+        "Please upload at least 1 image"
+      );
+
+      return false;
+
+    }
+
+    // MAX IMAGES
+
+    if (
+      form.images.length > 5
+    ) {
+
+      alert(
+        "Maximum 5 images allowed"
+      );
+
+      return false;
+
+    }
+
+    return true;
+
   };
 
   // ================= SUBMIT =================
 
-  const handleSubmit = async () => {
-    const data = new FormData();
+  const handleSubmit =
+    async () => {
 
-    Object.keys(form).forEach((key) => {
-      if (key === "images") {
-        form.images.forEach((img) => data.append("images", img));
-      } else {
-        data.append(key, form[key]);
-      }
-    });
+      // VALIDATE
 
-    selectedFacilities.forEach((f) => {
-      data.append("facilities", f);
-    });
+      const isValid =
+        validateForm();
 
-    try {
-      const res = await fetch(
-        "http://localhost:5000/api/listings/create",
-        {
-          method: "POST",
-          body: data,
+      if (!isValid) return;
+
+      const data =
+        new FormData();
+
+      // FORM DATA
+
+      Object.keys(form).forEach(
+        (key) => {
+
+          if (key === "images") {
+
+            form.images.forEach(
+              (img) =>
+
+                data.append(
+                  "images",
+                  img
+                )
+
+            );
+
+          } else {
+
+            data.append(
+              key,
+              form[key]
+            );
+
+          }
+
         }
       );
 
-      const result = await res.json();
+      // FACILITIES
 
-      if (!res.ok) {
-        alert(result.message);
-        return;
+      selectedFacilities.forEach(
+        (f) => {
+
+          data.append(
+            "facilities",
+            f
+          );
+
+        }
+      );
+
+      try {
+
+        const res =
+          await fetch(
+
+            "http://localhost:5000/api/listings/create",
+
+            {
+
+              method: "POST",
+
+              body: data,
+
+            }
+
+          );
+
+        const result =
+          await res.json();
+
+        if (!res.ok) {
+
+          alert(
+            result.message
+          );
+
+          return;
+
+        }
+
+        alert(
+          "Listing Created Successfully 🚀"
+        );
+
+        navigate(
+          "/Providerdashboard"
+        );
+
+      } catch (err) {
+
+        console.log(err);
+
+        alert(
+          "Server Error"
+        );
+
       }
 
-      alert("Listing Created Successfully");
-
-      navigate("/Providerdashboard");
-
-    } catch (err) {
-      console.log(err);
-      alert("Server Error");
-    }
-  };
+    };
 
   return (
+
     <div className="listing-page">
 
       <div className="listing-form">
 
         {/* ROOM DETAILS */}
+
         <div className="listing-section">
 
-          <h2>Room Details</h2>
+          <h2>
+            Room Details
+          </h2>
+
+          {/* TITLE */}
 
           <div className="full-width">
-            <label>Room / PG / Flat / Hostel Name *</label>
+
+            <label>
+              Room / PG / Flat / Hostel Name *
+            </label>
+
             <input
+
               type="text"
+
               name="title"
+
               placeholder="e.g. Sunrise PG for Boys"
-              onChange={handleChange}
+
+              onChange={
+                handleChange
+              }
+
             />
+
           </div>
+
+          {/* CITY + PINCODE */}
 
           <div className="listing-grid-2">
 
             <div>
-              <label>City *</label>
-              <select name="city" onChange={handleChange}>
-                <option value="">Select city</option>
-                <option value="Dehradun">Dehradun</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Pune">Pune</option>
-                <option value="Bangalore">Bangalore</option>
-                <option value="Hyderabad">Hyderabad</option>
+
+              <label>
+                City *
+              </label>
+
+              <select
+
+                name="city"
+
+                onChange={
+                  handleChange
+                }
+
+              >
+
+                <option value="">
+                  Select city
+                </option>
+
+                <option value="Dehradun">
+                  Dehradun
+                </option>
+
+                <option value="Delhi">
+                  Delhi
+                </option>
+
+                <option value="Mumbai">
+                  Mumbai
+                </option>
+
+                <option value="Pune">
+                  Pune
+                </option>
+
+                <option value="Bangalore">
+                  Bangalore
+                </option>
+
+                <option value="Hyderabad">
+                  Hyderabad
+                </option>
+
               </select>
+
             </div>
 
             <div>
-              <label>Pin Code</label>
+
+              <label>
+                Pin Code
+              </label>
+
               <input
+
                 type="text"
+
                 name="pincode"
+
+                maxLength="6"
+
                 placeholder="e.g. 201301"
-                onChange={handleChange}
+
+                onChange={
+                  handleChange
+                }
+
               />
+
             </div>
 
           </div>
 
+          {/* ADDRESS + PRICE */}
+
           <div className="listing-grid-2">
 
             <div>
-              <label>Location / Area</label>
+
+              <label>
+                Location / Area *
+              </label>
+
               <input
+
                 type="text"
+
                 name="address"
+
                 placeholder="e.g. Sector 62"
-                onChange={handleChange}
+
+                onChange={
+                  handleChange
+                }
+
               />
+
             </div>
 
             <div>
-              <label>Price per Month (₹) *</label>
+
+              <label>
+                Price per Month (₹) *
+              </label>
+
               <input
+
                 type="text"
+
                 name="price"
+
                 placeholder="e.g. 8500"
-                onChange={handleChange}
+
+                onChange={
+                  handleChange
+                }
+
               />
+
             </div>
 
           </div>
 
           {/* TYPE + GENDER */}
+
           <div className="listing-grid-2">
 
             <div>
-              <label>Property Type *</label>
-              <select name="type" onChange={handleChange}>
-                <option value="">Select type</option>
-                <option value="PG">PG</option>
-                <option value="Hostel">Hostel</option>
-                <option value="Room">Room</option>
-                <option value="Flat">Flat</option>
+
+              <label>
+                Property Type *
+              </label>
+
+              <select
+
+                name="type"
+
+                onChange={
+                  handleChange
+                }
+
+              >
+
+                <option value="">
+                  Select type
+                </option>
+
+                <option value="PG">
+                  PG
+                </option>
+
+                <option value="Hostel">
+                  Hostel
+                </option>
+
+                <option value="Room">
+                  Room
+                </option>
+
+                <option value="Flat">
+                  Flat
+                </option>
+
               </select>
+
             </div>
 
             <div>
-              <label>Gender</label>
-              <select name="gender" onChange={handleChange}>
-                <option value="">Select gender</option>
-                <option value="Boys">Boys</option>
-                <option value="Girls">Girls</option>
-                <option value="Unisex">Unisex</option>
+
+              <label>
+                Gender
+              </label>
+
+              <select
+
+                name="gender"
+
+                onChange={
+                  handleChange
+                }
+
+              >
+
+                <option value="">
+                  Select gender
+                </option>
+
+                <option value="Boys">
+                  Boys
+                </option>
+
+                <option value="Girls">
+                  Girls
+                </option>
+
+                <option value="Unisex">
+                  Unisex
+                </option>
+
               </select>
+
             </div>
 
           </div>
 
           {/* CONTACT */}
+
           <div className="listing-grid-2">
 
             <div>
-              <label>WhatsApp</label>
+
+              <label>
+                WhatsApp
+              </label>
+
               <input
+
                 type="text"
+
                 name="whatsapp"
+
+                maxLength="10"
+
                 placeholder="WhatsApp number"
-                onChange={handleChange}
+
+                onChange={
+                  handleChange
+                }
+
               />
+
             </div>
 
             <div>
-              <label>Call Add (Phone Number)</label>
+
+              <label>
+                Call Add (Phone Number)
+              </label>
+
               <input
+
                 type="text"
+
                 name="phone"
+
+                maxLength="10"
+
                 placeholder="Enter contact number"
-                onChange={handleChange}
+
+                onChange={
+                  handleChange
+                }
+
               />
+
             </div>
 
           </div>
 
           {/* FACILITIES */}
+
           <div className="facility-section">
 
-            <label>Facilities</label>
+            <label>
+              Facilities
+            </label>
 
             <div className="facility-list">
 
-              {facilitiesList.map((facility) => (
-                <button
-                  type="button"
-                  key={facility}
-                  className={
-                    selectedFacilities.includes(facility)
-                      ? "facility-btn active-facility"
-                      : "facility-btn"
-                  }
-                  onClick={() => toggleFacility(facility)}
-                >
-                  {facility}
-                </button>
-              ))}
+              {facilitiesList.map(
+                (facility) => (
+
+                  <button
+
+                    type="button"
+
+                    key={facility}
+
+                    className={
+
+                      selectedFacilities.includes(
+                        facility
+                      )
+
+                        ? "facility-btn active-facility"
+
+                        : "facility-btn"
+
+                    }
+
+                    onClick={() =>
+                      toggleFacility(
+                        facility
+                      )
+                    }
+
+                  >
+
+                    {facility}
+
+                  </button>
+
+                )
+              )}
 
             </div>
 
           </div>
 
-          {/* IMAGE */}
+          {/* IMAGES */}
+
           <div className="upload-box">
 
-            <label>Upload Images *</label>
+            <label>
+              Upload Images *
+            </label>
 
             <input
+
               type="file"
+
               multiple
+
               name="images"
-              onChange={handleChange}
+
+              accept="image/*"
+
+              onChange={
+                handleChange
+              }
+
             />
 
           </div>
@@ -292,15 +771,25 @@ export default function AddListing() {
         </div>
 
         {/* SUBMIT */}
+
         <button
+
           className="submit-btn"
-          onClick={handleSubmit}
+
+          onClick={
+            handleSubmit
+          }
+
         >
+
           Submit Listing for Review
+
         </button>
 
       </div>
 
     </div>
+
   );
+
 }

@@ -1,5 +1,5 @@
 // Rooms.jsx
-import { getAllListings } from "../api/api";
+
 
 
 import React, {
